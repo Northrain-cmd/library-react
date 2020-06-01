@@ -1,26 +1,69 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import BooksContainer from './BooksContainer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      library: [
+        {
+          isRead: false,
+          title: 'Lord of The Rings',
+          author: 'J.R.Tolkien',
+          pages: '394',
+          cover:
+            'http://books.google.com/books/content?id=luXhAwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+        },
+        {
+          isRead: true,
+          title: 'Lord of The Rings',
+          author: 'J.R.Tolkien',
+          pages: '394',
+          cover:
+            'http://books.google.com/books/content?id=luXhAwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+        },
+      ],
+    };
+  }
+  editFormSubmit = (e) => {
+    console.log(e.target.title.value)
+   
+    //TO DO//
+
+    }
+  deleteBook =  (index) => {
+    console.log(index)
+    this.setState({
+      library: [...this.state.library.filter((book,i) => {
+        return index !== i;
+      })]
+    })
+  }
+  changeReadStatus = (index) => {
+    let newLib = this.state.library.map((book, i) => {
+      if (index === i) {
+        book.isRead = !book.isRead;
+      }
+      return book;
+    });
+    this.setState({
+      library: [...newLib],
+    });
+  };
+  render() {
+    return (
+      <div className="App">
+        <h1>Library</h1>
+        <BooksContainer
+          editFormSubmit = {this.editFormSubmit}
+          changeReadStatus={this.changeReadStatus}
+          library={this.state.library}
+          deleteBook = {this.deleteBook}
+        />
+      </div>
+    );
+  }
 }
 
 export default App;
