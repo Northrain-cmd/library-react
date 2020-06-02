@@ -1,11 +1,12 @@
 import React from 'react';
 import Book from './Book';
 
+
 export default function BooksContainer(props) {
   const books = props.library.map((book, index) => {
     return (
       <Book
-        editFormSubmit = {props.editFormSubmit}
+        editFormSubmit = {props.editFormSubmit.bind(this,index)}
         bookInfo={book}
         key={index}
         deleteBook = {props.deleteBook.bind(this,index)}
@@ -14,5 +15,7 @@ export default function BooksContainer(props) {
     );
   });
 
-  return <div className="container">{books}</div>;
+  return (
+      <div className="container">{books}</div>
+  )
 }

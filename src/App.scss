@@ -31,11 +31,40 @@ html{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+
+    #new-book-form{
+      display: flex;
+      flex-direction: row;
+      align-self: center;
+      width: 50%;
+      height: 7vh;
+      margin-top: 2%;
+     
+
+      input[type="text"]{
+        width: 85%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-size: 1.5em;
+      }
+
+      input[type = 'submit']{
+        width: 15%;
+        height: 100%;
+        border: none;
+        background-color: green;
+        color: white;
+        font-size: 1.5em;
+      }
+    }
   } 
 
   h1{
     text-align: center;
     margin: 0;
+    margin-top: 1%;
+    color: white;
   }
   .container{
     margin: 1% 1%;

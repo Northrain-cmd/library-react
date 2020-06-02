@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.scss';
 import BooksContainer from './BooksContainer';
+import AddBook from './AddBook';
 
 class App extends React.Component {
   constructor(props) {
@@ -26,12 +27,26 @@ class App extends React.Component {
       ],
     };
   }
-  editFormSubmit = (e) => {
-    console.log(e.target.title.value)
-   
-    //TO DO//
+  editFormSubmit = (index,e) => {
+   let newLib = this.state.library.map((book,i) => {
+     if (index === i) {
+       book.title = e.target.title.value;
+       book.author = e.target.author.value;
+       book.pages = e.target.pages.value;
+     }
+     return book
+   })
 
+   this.setState({
+     library: [...newLib],
+   })
+   
     }
+
+  addBook = (val,e) => {
+    e.preventDefault();
+    console.log(val)
+  }
   deleteBook =  (index) => {
     console.log(index)
     this.setState({
@@ -55,6 +70,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Library</h1>
+        <AddBook addBook = {this.addBook}/>
         <BooksContainer
           editFormSubmit = {this.editFormSubmit}
           changeReadStatus={this.changeReadStatus}
