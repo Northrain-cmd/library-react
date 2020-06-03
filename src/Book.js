@@ -20,9 +20,9 @@ export default class Book extends React.Component {
     });
   };
   editFormSubmit = (e) => {
-      this.editScreen();
-      this.props.editFormSubmit(e);
-  }
+    this.editScreen();
+    this.props.editFormSubmit(e);
+  };
   render() {
     const isRead = this.props.bookInfo.isRead;
     return (
@@ -33,8 +33,8 @@ export default class Book extends React.Component {
         >
           {this.state.showInfo && (
             <BookInfo
-              editFormSubmit = {this.editFormSubmit}
-              editScreen = {this.state.editScreen}
+              editFormSubmit={this.editFormSubmit}
+              editScreen={this.state.editScreen}
               editBook={this.editScreen}
               deleteBook={this.props.deleteBook}
               bookInfo={this.props.bookInfo}

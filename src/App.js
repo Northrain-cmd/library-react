@@ -26,7 +26,7 @@ class App extends React.Component {
             'http://books.google.com/books/content?id=luXhAwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
         },
       ],
-      error: ''
+      error: '',
     };
   }
   editFormSubmit = (index, e) => {
@@ -44,9 +44,8 @@ class App extends React.Component {
     });
   };
 
-  addBook = (val, e) => {
+  addBook = (val) => {
     let response;
-    e.preventDefault();
     if (val.length >= 3) {
       fetch(
         `https://www.googleapis.com/books/v1/volumes?&fields=items(volumeInfo(title,authors,pageCount,imageLinks(thumbnail)))&q=${val}&maxResults=1&key=${this.googleBooks}`
@@ -54,37 +53,37 @@ class App extends React.Component {
         .then((data) => {
           data.json().then((result) => {
             response = result.items[0].volumeInfo;
-            if (! this.state.library.find((book) => {
-              return book.title === response.title
-            })) {
+            if (
+              !this.state.library.find((book) => {
+                return book.title === response.title;
+              })
+            ) {
               this.setState({
                 library: [
                   {
                     isRead: false,
                     title: response.title,
-                    author: response.authors ? response.authors.toString() : 'unknown',
+                    author: response.authors
+                      ? response.authors.toString()
+                      : 'unknown',
                     pages: response.pageCount ? response.pageCount : 'unknown',
                     cover: response.imageLinks.thumbnail,
                   },
                   ...this.state.library,
-                  
                 ],
-                error:""
+                error: '',
               });
-            }
-            else {
+            } else {
               this.setState({
-                error : "You already added this book"
-              })
+                error: 'You already added this book',
+              });
               setTimeout(() => {
                 this.setState({
-                  error : ""
-                })
-              },3000)
+                  error: '',
+                });
+              }, 3000);
             }
-          
           });
-       
         })
         .catch((error) => {
           console.log(error);
@@ -109,16 +108,18 @@ class App extends React.Component {
       return book;
     });
     this.setState({
-      library: [...newLib.sort((a,b) => {
-        return a.isRead - b.isRead
-      })],
+      library: [
+        ...newLib.sort((a, b) => {
+          return a.isRead - b.isRead;
+        }),
+      ],
     });
   };
   render() {
     return (
       <div className="App">
         <h1>Library</h1>
-        <AddBook error = {this.state.error} addBook={this.addBook} />
+        <AddBook error={this.state.error} addBook={this.addBook} />
         <BooksContainer
           editFormSubmit={this.editFormSubmit}
           changeReadStatus={this.changeReadStatus}
