@@ -2,11 +2,28 @@
 @import './normalize.css';
 
 html {
+  min-height: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
+  background: hsla(177, 87, 79);
+  background: linear-gradient(
+    90deg,
+    hsla(177, 87, 79, 1) 0%,
+    hsla(235, 89, 70, 1) 100%
+  );
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(177, 87, 79, 1) 0%,
+    hsla(235, 89, 70, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(177, 87, 79, 1) 0%,
+    hsla(235, 89, 70, 1) 100%
+  );
   button,
   input[type='submit'] {
     outline: none;
@@ -16,6 +33,7 @@ html {
   }
 
   body {
+    height: 100%;
     margin: 0;
     padding: 0;
   }
@@ -23,23 +41,8 @@ html {
 #root {
   height: 100%;
   .App {
-    background: hsla(177, 87, 79);
-    background: linear-gradient(
-      90deg,
-      hsla(177, 87, 79, 1) 0%,
-      hsla(235, 89, 70, 1) 100%
-    );
-    background: -moz-linear-gradient(
-      90deg,
-      hsla(177, 87, 79, 1) 0%,
-      hsla(235, 89, 70, 1) 100%
-    );
-    background: -webkit-linear-gradient(
-      90deg,
-      hsla(177, 87, 79, 1) 0%,
-      hsla(235, 89, 70, 1) 100%
-    );
-   min-height: 100vh;
+  
+    height: 100%;
     display: flex;
     flex-direction: column;
 
@@ -53,13 +56,12 @@ html {
       .new-book-input {
         display: flex;
         flex-direction: row;
-        height: 7vh;
         overflow: hidden;
       }
 
       input[type='text'] {
         width: 85%;
-        height: 100%;
+        min-height: 50px;
         margin: 0;
         padding: 0;
         font-size: 1.5em;
@@ -75,7 +77,7 @@ html {
 
       input[type='submit'] {
         width: 15%;
-        height: 100%;
+        min-height: 100%;
         border: none;
         background-color: green;
         color: white;
@@ -98,7 +100,7 @@ html {
     flex-wrap: wrap;
 
     .book {
-      min-height: 60vh;
+      min-height: 400px;
       width: 20%;
       margin: 0 2%;
       margin-top: 2%;
@@ -225,13 +227,13 @@ html {
 
 @media only screen and (max-width:800px){
   .book{
-    min-height: 30vh !important;
+    min-height: 350px !important;
     width: 30% !important;
   }
 }
 @media only screen and (max-width:768px){
   .book{
-    min-height: 40vh !important;
+    min-height: 300px !important;
     width: 30% !important;
   }
 }
@@ -244,7 +246,7 @@ html {
   }
   .book{
     margin-top: 5% !important;
-    min-height: 50vh !important;
+    min-height: 400px !important;
     width: 70% !important;
   }
 }
@@ -256,7 +258,7 @@ html {
     width: 30% !important;
   }
   .book{
-    min-height: 50vh !important;
+    min-height: 450px !important;
     width: 70% !important;
   }
 }
@@ -268,7 +270,7 @@ html {
     width: 30% !important;
   }
   .book{
-    min-height: 60vh !important;
+    min-height: 450px !important;
     width: 80% !important;
   }
 }
