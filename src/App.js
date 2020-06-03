@@ -26,7 +26,7 @@ class App extends React.Component {
             'http://books.google.com/books/content?id=luXhAwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
         },
       ],
-      placeholder:"Enter book's full title"
+      error: ''
     };
   }
   editFormSubmit = (index, e) => {
@@ -59,7 +59,6 @@ class App extends React.Component {
             })) {
               this.setState({
                 library: [
-                  ...this.state.library,
                   {
                     isRead: false,
                     title: response.title,
@@ -67,13 +66,21 @@ class App extends React.Component {
                     pages: response.pageCount ? response.pageCount : 'unknown',
                     cover: response.imageLinks.thumbnail,
                   },
+                  ...this.state.library,
+                  
                 ],
+                error:""
               });
             }
             else {
               this.setState({
-                placeholder : "You already added this book"
+                error : "You already added this book"
               })
+              setTimeout(() => {
+                this.setState({
+                  error : ""
+                })
+              },3000)
             }
           
           });
@@ -102,14 +109,16 @@ class App extends React.Component {
       return book;
     });
     this.setState({
-      library: [...newLib],
+      library: [...newLib.sort((a,b) => {
+        return a.isRead - b.isRead
+      })],
     });
   };
   render() {
     return (
       <div className="App">
         <h1>Library</h1>
-        <AddBook placeholder = {this.state.placeholder} addBook={this.addBook} />
+        <AddBook error = {this.state.error} addBook={this.addBook} />
         <BooksContainer
           editFormSubmit={this.editFormSubmit}
           changeReadStatus={this.changeReadStatus}

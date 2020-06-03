@@ -34,12 +34,16 @@ html{
 
     #new-book-form{
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-self: center;
       width: 50%;
       height: 7vh;
-      margin-top: 2%;
-     
+      margin-top: 1%;
+    
+      .new-book-input{
+        display: flex;
+        flex-direction: row;
+      }
 
       input[type="text"]{
         width: 85%;
@@ -47,6 +51,14 @@ html{
         margin: 0;
         padding: 0;
         font-size: 1.5em;
+      }
+
+      label{
+        margin:0;
+        text-align: center;
+        font-size: 1.2em;
+        color: white;
+        min-height: 50%;
       }
 
       input[type = 'submit']{

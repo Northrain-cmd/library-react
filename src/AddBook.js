@@ -16,14 +16,18 @@ export default class AddBook extends React.Component {
     let val = this.state.value;
     return (
       <form id="new-book-form" onSubmit={this.props.addBook.bind(this, val)}>
-        <input
-          type="text"
-          name="newBook"
-          value={this.state.value}
-          onChange={this.inputHandler}
-          placeholder={this.props.placeholder}
-        />
-        <input type="submit" name="newBook" value="Add" />
+            <label for = 'newBook'>{this.props.error} </label>
+            <div className ='new-book-input' >
+              <input
+                id = "newBook"
+                type="text"
+                name="newBook"
+                value={this.state.value}
+                onChange={this.inputHandler}
+                placeholder= "Enter book's full title"
+              />
+              <input type="submit" name="newBook" value="Add" />
+         </div>
       </form>
     );
   }
